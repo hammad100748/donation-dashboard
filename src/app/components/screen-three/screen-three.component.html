@@ -1,0 +1,43 @@
+<div *ngIf='!project'>
+  <h1>Loading...</h1>
+</div>
+<div *ngIf='project' [style.background-image]='getBackground(project?.backgroundUrl)' style="color:white; height: 100vh; background-position: center; background-repeat: no-repeat;background-size: cover;"
+  dir="rtl">
+  <div class="container">
+    <div class="row">
+      <div class="center" style="margin-top: 10%">
+        <h1 dir="rtl">סה"כ נתרם: {{project?.totalDonation}} {{project.currency}}</h1>
+      </div>
+      <div class="center">
+        <img src="assets/mid.png" width="50%">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-{{numCat}} center" *ngFor="let c of project.categories">
+        <h2 dir="rtl" class="center">{{c.value}}</h2>
+      </div>
+    </div> 
+    <div class="row">
+      <div class="col-sm-{{numCat}}" *ngIf="project.category1Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category1Total}}</h3>
+        </div>
+      </div>
+      <div class="col-sm-{{numCat}}" *ngIf="project.category2Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category2Total}}</h3>
+        </div>
+      </div>
+      <div class="col-sm-{{numCat}}" *ngIf="project.category3Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category3Total}}</h3>
+        </div>
+      </div>
+      <div class="col-sm-{{numCat}}" *ngIf="project.category4Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category4Total}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

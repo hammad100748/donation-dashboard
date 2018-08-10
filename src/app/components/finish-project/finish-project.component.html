@@ -1,0 +1,36 @@
+<div *ngIf='donations' class="container" dir="rtl">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>{{currentProject?.name}}</h2>
+      <table class="table table-striped" style="border: 1px solid black">
+        <thead>
+          <tr>
+            <th>Number#</th>
+            <th>Title</th>
+            <th>Full Name</th>
+            <th>Amount Donated</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let d of donations;let i = index">
+            <td>{{++i}}</td>
+            <td>{{d.sur}}</td>
+            <td>{{d.name}}</td>
+            <td>{{d.amount}}</td>
+            <td>{{d.category}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-md-4" style="margin-top: 15%">
+      <button class="btn btn-success" (click)="exportTable()">Export Table</button><br>
+      <a class="btn btn-info" type="button" routerLink='/data-entry' style="margin-top: 5px">Back to Donations</a><br>
+      <button href="#" (click)="simpleLogout()" style="margin-top: 5px" type="button" class="btn btn-sm btn-warning">Logout</button><br>
+      <button class="btn btn-danger" (click)="logout()" style="margin-top: 5px">Clear Data & Logout</button>
+    </div>
+  </div>
+</div>
+<div *ngIf='!donations'>
+  <h2>Loading...</h2>
+</div>

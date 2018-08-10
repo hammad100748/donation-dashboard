@@ -1,0 +1,65 @@
+<div *ngIf='!project'>
+  <h1>Loading...</h1>
+</div>
+<div *ngIf='project' [style.background-image]='getBackground(project?.backgroundUrl)' style="color:white; height: 100vh; background-position: center; background-repeat: no-repeat;background-size: cover;" >
+  <div class="container-fluid">
+      <div class="row">
+          <div class="col-sm-{{numCat}} center" *ngFor="let c of project.categories">
+            <h2 dir="rtl" class="center">{{c.value}}</h2>
+          </div>
+        </div> 
+      <div class="row">
+      <div class="col-sm-{{numCat}}" *ngIf="project.category1Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category1Total}}</h3>
+        </div>
+      </div>
+      <div class="col-sm-{{numCat}}" *ngIf="project.category2Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category2Total}}</h3>
+        </div>
+      </div>
+      <div class="col-sm-{{numCat}}" *ngIf="project.category3Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category3Total}}</h3>
+        </div>
+      </div>
+      <div class="col-sm-{{numCat}}" *ngIf="project.category4Total!=null">
+        <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;;">
+          <h3 style="color:#000;font-size:72px;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category4Total}}</h3>
+        </div>
+      </div>
+    </div>
+    <div class="row">      
+      <div class="col-sm-12" dir="rtl">
+        <div class="row" dir="rtl">
+          <div class="col-sm-{{numCat}}" dir="rtl" *ngFor="let c of project.categories">
+            <h3 class="center">{{c.value}}</h3>
+          </div>
+        </div>
+        <div class="row" dir="rtl">
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category1Donations;">
+                <li class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category2Donations;">
+                <li  class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category3Donations;">
+                <li class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category4Donations;">
+                <li class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>                                          
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

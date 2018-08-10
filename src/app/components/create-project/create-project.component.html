@@ -1,0 +1,83 @@
+<div class="container" dir="rtl">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2" style="border: 1px solid black;margin-top: 5px">
+      <h2 class="text-center">התחל פרוייקט חדש</h2>
+        <form #projectForm="ngForm" class="form" (ngSubmit)="startProject(projectForm.value)">
+        <div class="form-group">
+          <label style="float: right;" for="exampleFormControlInput1">שם הפרויקט</label>
+          <input type="text" name="project_name" class="form-control" style="font-size: 28px;" ngModel placeholder="שם הפרויקט">
+        </div>                
+        <div class="form-group">
+          <label style="float: right;" for="exampleFormControlFile1">תמונת רקע</label> <br>
+          <label style="font-size: 12px;float: right;">(Background Max file size = 1MB)</label>
+          <br>
+          <label *ngIf='error' style="color: red;font-size: 12px;float: right;">*Please Upload Background</label>
+          <input type="file" class="form-control-file" id="exampleFormControlFile1" (change)="onFileSelected($event)">          
+        </div>        
+        <label for="exampleFormControlInput1" style="float: right;">מטבע</label> <br>
+        <!-- Check Boxes-->
+        <div class="form-check-inline" style="float: right;">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" [(ngModel)]="project.currency" name="currency" value="₪">
+              <img src="assets/shekel.png">
+            </label>
+          </div>
+          <div class="form-check-inline" style="float: right;">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" [(ngModel)]="project.currency" name="currency" value="$">
+              <img src="assets/dollar.png">
+            </label>
+          </div>
+          <div class="form-check-inline" style="float: right;">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" [(ngModel)]="project.currency" name="currency" value="€">
+              <img src="assets/euro.png">
+            </label>
+          </div>
+          <div class="form-check-inline" style="float: right;">
+            <label class="form-check-label">
+              <input type="radio" class="form-check-input" [(ngModel)]="project.currency" name="currency" value="£">
+              <img src="assets/pound.png">
+            </label>
+          </div>
+          <br>
+          <br>
+          <!-- CHECK BOX ENDS-->              
+          <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="float: right;" for="exampleFormControlInput1">קטגוריה 1</label>
+                    <input type="text" name="cat_1" style="font-size: 28px;" class="form-control" ngModel placeholder="קטגוריה 1">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label style="float: right;" for="exampleFormControlInput1">קטגוריה 2</label>
+                    <input type="text" name="cat_2" style="font-size: 28px;" class="form-control" ngModel placeholder="קטגוריה 2">
+                  </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label  style="float: right;" for="exampleFormControlInput1">קטגוריה 3</label>
+                    <input type="text" name="cat_3" style="font-size: 28px;" class="form-control" ngModel placeholder="קטגוריה 3">
+                  </div>
+            </div>
+            <div class="col-md-6">
+              
+          <div class="form-group">
+              <label for="exampleFormControlInput1" style="float: right;">קטגוריה 4</label>
+              <input type="text" name="cat_4" style="font-size: 28px;" class="form-control" ngModel placeholder="קטגוריה 4">
+            </div>
+            </div>
+          </div>        
+          
+        <div class="form-group text-center">
+          <button type="submit" class="btn btn-lg btn-primary">התחל</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-4">
+      <a routerLink="/home" class="btn btn-success">Back To Home</a>
+    </div>
+  </div>
+</div>

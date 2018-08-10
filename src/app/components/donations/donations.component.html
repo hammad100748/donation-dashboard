@@ -1,0 +1,55 @@
+<div class="row" dir="rtl">
+  <div class="col-md-12">
+    <table class="table table-bordered text-center" *ngIf="allDonations">
+      <thead>
+        <th style="width: 10%">Title</th>
+        <th style="width: 30%">
+          <div class="row">
+            <div class="col-md-6" style="margin-top: 14px">Name</div>
+            <div class="col-md-6"><input type="text" class="form-control" [(ngModel)]="searchNameString" id="search" placeholder="...Search By Name"></div>
+          </div>
+        </th>
+        <th style="width: 10%">Amount</th>
+        <th style="width: 25%">categories</th>
+        <th style="width: 25%">
+          <div class="row">
+            <div class="col-sm-6">Actions</div>
+            <div class="col-sm-6"><a type="button" class="btn btn-sm btn-warning" routerLink='/data-entry'>Back</a></div>
+          </div>
+        </th>
+      </thead>      
+      <tr *ngFor="let coin of allDonations | searchByName : 'name' : searchNameString; let i = index">                        
+        <td *ngIf="coin.id===editRowId"><input class="form-control" type="text" [(ngModel)]="coin.sur"></td>
+        <td *ngIf="coin.id!==editRowId">{{coin.sur}}</td>
+        <td *ngIf="coin.id===editRowId"><input class="form-control" type="text" [(ngModel)]="coin.name"></td>
+        <td *ngIf="coin.id!==editRowId">{{coin.name}}</td>
+        <td *ngIf="coin.id===editRowId"><input class="form-control myInput" limit-to="8" type="number" (keypress)="_keyPress($event)" [(ngModel)]="coin.amount"></td>
+        <td *ngIf="coin.id!==editRowId">{{coin.amount}}</td>
+        <td *ngIf="coin.id===editRowId">
+            <select class="form-control" name="sel" 
+            [(ngModel)]="coin.category" 
+            >
+          <option *ngFor="let category of categories; let i=index" [ngValue]="category.id">
+            {{category.value}}
+          </option>
+        </select>
+        </td>
+        <td *ngIf="coin.id!==editRowId">{{filterCategory(coin.category)}}</td>
+        <td *ngIf="coin.id===editRowId">
+          <div class="row">
+            <div class="col-md-6"><input (click)="updateRow(coin)" type="button" value="Update" class="form-control btn btn-warning btn-sm"> </div>
+            <div class="col-md-6"><input (click)="editRow(null,null)" type="button" value="Cancel" class="form-control btn-default btn-sm"> </div>
+          </div>
+        </td>
+          
+        <td>
+          <div class="row">
+            <div class="col-md-6"><input *ngIf="coin.id!==editRowId" (click)="editRow(coin.id,coin.amount,coin.category)" type="button" class="form-control btn-info btn-sm" value="Edit"></div>
+            <div class="col-md-6"><input *ngIf="coin.id!==editRowId" (click)="deleteRow(coin.id,coin.category,coin.amount)" type="button" class="form-control btn-danger btn-sm" value="Delete"></div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div *ngIf="!allDonations"><h2>Loading...</h2></div>

@@ -1,0 +1,85 @@
+<div *ngIf='!project'>
+  <h1>Loading...</h1>
+</div>
+<div *ngIf='project' [style.background-image]='getBackground(project?.backgroundUrl)' style="color:white; height: 100vh; background-position: center; background-repeat: no-repeat;background-size: cover;"
+  dir="rtl">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="row center">
+          <div class="center" style="margin-top: 40%">
+            <h1 style="line-height: 60px">{{donation?.sur}} {{donation?.name}}</h1>
+          </div>
+          <div>
+            <img src="assets/mid.png" width="100%" style="margin-top: -10px;">
+          </div>
+          <div class="center">
+            <h1 style="margin-top: -20px;">{{categorySelected[0]?.value}}</h1>
+          </div>
+        </div>
+        <div class="row center">
+          <div class="col-sm-6 center" style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: contain;">
+            <h4 style="color:#000;margin-top: 0px;margin-bottom: 0px;padding-top: 18px;line-height: 30px;" dir="rtl">סה"כ נתרם:</h4>
+            <h4 style="color:#000;margin-top: 0px;margin-top: 0px;margin-bottom: 30px;padding-bottom: 0px;line-height: 30px;"> {{project?.totalDonation}} {{project.currency}}</h4>
+          </div>
+        </div>
+        <div class="row center">
+          <div style="font-size: 34px;" class="col-sm-{{numCat}}" *ngFor="let c of project.categories">
+            {{c.value}}
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-{{numCat}}" *ngIf="project.category1Total!=null">
+              <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+                <h4 style="font-size: 55px ;color:#000;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category1Total}}</h4>
+              </div>
+            </div> 
+            <div class="col-sm-{{numCat}}" *ngIf="project.category2Total!=null">
+              <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+                <h4 style="font-size: 55px;color:#000;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category2Total}}</h4>
+              </div>
+            </div>
+            <div class="col-sm-{{numCat}}" *ngIf="project.category3Total!=null">
+              <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;">
+                <h4 style="font-size: 55px;color:#000;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category3Total}}</h4>
+              </div>
+            </div>
+            <div class="col-sm-{{numCat}}" *ngIf="project.category4Total!=null">
+              <div style="background-image: url(assets/total_bg.png);background-repeat: no-repeat;background-size: 100% auto;padding-bottom: 10%;padding-top: 10%;;">
+                <h4 style="font-size: 55px;color:#000;text-align: center;top: 50%;" [style.transform]="'translateY('+transformY+')'">{{project.category4Total}}</h4>
+              </div>
+            </div>
+          </div>
+      </div>
+      <div class="col-sm-8" dir="rtl">
+        <div class="row" dir="rtl" style="margin-top: 15%;">
+          <div class="col-sm-{{numCat}}" dir="rtl" *ngFor="let c of project.categories">
+            <h3 class="center">{{c.value}}</h3>
+          </div>
+        </div>
+        <div class="row" dir="rtl">
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category1Donations;">
+                <li class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category2Donations;">
+                <li  class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category3Donations;">
+                <li class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>
+            </ul>
+          </div>
+          <div class="col-sm-{{numCat}}" dir="rtl">
+            <ul class="custom-ul" dir="rtl" *ngFor="let cd of category4Donations;">
+                <li class="custom-li" dir="rtl">{{cd.sur}} {{cd.name}}</li>                                          
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

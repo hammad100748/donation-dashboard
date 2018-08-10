@@ -1,0 +1,22 @@
+<h2 *ngIf="loading">Loading...</h2>
+<div class="container" *ngIf="!loading">
+  <div class="row">
+    <div class="col-sm-8">
+      <div>
+        <h4>Current Project</h4>
+        <p *ngIf="!currentProject">No Project</p>
+        <p *ngIf="currentProject"><a style="font-size: 18px" routerLink="/data-entry">{{currentProject?.name}}</a></p>
+      </div>
+      <div>
+        <h5>All Projects</h5>
+        <p *ngIf="!allProjects">No Projects</p>
+        <ul>
+          <li *ngFor="let p of allProjects">{{p.name}}</li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <a class="btn btn-primary" routerLink="/create-project">Create New Project</a>
+    </div>
+  </div>
+</div>

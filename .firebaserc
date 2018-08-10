@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "donation-local",
+    "donation": "donation-local"
+  }
+}

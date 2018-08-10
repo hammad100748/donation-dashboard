@@ -1,0 +1,91 @@
+<div *ngIf='!categories'>
+  <h2>Loading...</h2>
+</div>
+<div dir="rtl" class="container" *ngIf='categories'>
+  <h2 class="text-center">{{project?.name}}</h2>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-10 col-md-offset-2" style="border: 1px solid black;margin-top: 5%">
+          <h2 class="text-center">הזן תרומה</h2>
+          <form #donationForm="ngForm" class="form" (ngSubmit)="submitDonation(donationForm)">
+            <div class="form-group">
+              <label style="float: right;">כותרת:</label>
+            </div>
+            <div dir="rtl" style="float: right;" class="form-check-inline">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [(ngModel)]="model.sur" name="sur" value="ר'">'ר</label>
+            </div>
+            <div class="form-check-inline" dir="rtl" style="float: right;">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [(ngModel)]="model.sur" name="sur" value="הרב"> הרב
+              </label>
+            </div>
+            <div class="form-check-inline" dir="rtl" style="float: right;">
+              <label class="form-check-label">
+                <input type="radio" class="form-check-input" [(ngModel)]="model.sur" name="sur" value="הרה”ח"> הרה”ח
+              </label>
+            </div>
+            <div class="form-check-inline" dir="rtl" style="float: right;">
+              <label class="form-check-label">
+                <input type="radio" style="float: right;" class="form-check-input" [(ngModel)]="model.sur" name="sur" value="other">Other
+              </label>
+              <input type="text" style="float: right;" width="25%" (input)="onSearchChange($event.target.value)" name="otherText" ngModel
+                class="form-control" value="Enter Title">
+            </div>
+            <br>
+            <p *ngIf='error'>*Please Fill All fields</p>
+            <br>
+            <div class="form-group">
+              <label for="exampleFormControlInput1">שם מלא:</label>
+              <input type="text" style="font-size: 28px;width: 75%;float: left;margin-right: 10px" name="name" class="form-control" ngModel
+                placeholder="שם מלא">
+            </div>
+            <br>
+            <div class="form-group">
+              <label for="exampleFormControlFile1">הסכום שנתרם:</label>
+              <input type="number" style="font-size: 28px;width: 75%;float: left;margin-right: 10px" class="form-control" id="exampleFormControlFile1"
+                name="amount" (keypress)="_keyPress($event)" limit-to="8" ngModel placeholder="Enter Amount" required>
+            </div>
+            <br>
+            <div class="form-group">
+              <label style="float: right;" for="exampleFormControlFile1">בחר קטגוריה:</label>
+              <div class="form-check-inline" style="float: right;" *ngFor="let c of categories">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" [(ngModel)]="donation.category" name="category" value="{{c.id}}">:{{c.value}}
+                </label>
+              </div>
+            </div>
+            <br>
+            <br>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-lg btn-primary">התחל</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <h5>Output Screens</h5>
+      <a routerLink="/screen-one" target="_blank" type="button" class="btn btn-success">Screen 1</a>
+      <br>
+      <a routerLink="/screen-two" style="margin-top: 3px" target="_blank" type="button" class="btn btn-success">Screen 2</a>
+      <br>
+      <a routerLink="/screen-three" style="margin-top: 3px" target="_blank" type="button" class="btn btn-success">Screen 3</a>
+      <br>
+      <a routerLink="/category-screen-one" style="margin-top: 3px" target="_blank" type="button" class="btn btn-danger">Category Screen 1</a>
+      <br>
+      <a routerLink="/category-screen-two" style="margin-top: 3px" target="_blank" type="button" class="btn btn-danger">Category Screen 2</a>
+      <br>
+      <a routerLink="/screen-two-sum" style="margin-top: 3px" target="_blank" type="button" class="btn btn-danger">Screen 2 Sum</a>
+      <br>
+      <a routerLink="/screen-two-no-sum" style="margin-top: 3px" target="_blank" type="button" class="btn btn-danger">Screen 2 With No Sum</a>
+      <br>
+      <a routerLink="/donations" style="margin-top: 3px" target="_blank" type="button" class="btn btn-info">Edit/Delete Donations</a>
+      <br>
+      <a href="#" (click)="logout()" style="margin-top: 3px" type="button" class="btn btn-sm btn-warning">Logout</a>
+      <br>
+      <a routerLink="/finish-project" style="margin-top: 3px" type="button" class="btn btn-sm btn-info">Finish Project</a>
+    </div>
+  </div>
+</div>
